@@ -6,4 +6,13 @@
 3. Inport md3200.xml template into zabbix
 4. Apply this template to proper host in zabbix
 
+Script can monitor:
+- physical disks
+- fans
+- PSU
+- battery
+- temperature
+
+Alerts are fixed in template basing on my MD3200i with 12 disks in raid 6 (1 failure High, 2 failures Critical), 4 fans, 2 PSUs, 6 temp sensors and 2 batteries.
+
 This script was made using https://github.com/Borodatko/zabbix_storage_monitoring 
