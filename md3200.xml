@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>7.2</version>
+    <template_groups>
+        <template_group>
+            <uuid>7c2cb727f85b492d88cd56e17127c64d</uuid>
+            <name>Templates/SAN</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>505fdc7bcbd145b89676d8b80f712c04</uuid>
+            <template>MD3200</template>
+            <name>MD3200</name>
+            <groups>
+                <group>
+                    <name>Templates/SAN</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>23b385ae9c5d45c988005f3740d81c55</uuid>
+                    <name>Check battery failure</name>
+                    <key>system.run[/etc/zabbix/scripts/md3200.sh -b]</key>
+                    <delay>1h</delay>
+                    <value_type>TEXT</value_type>
+                    <timeout>30s</timeout>
+                    <triggers>
+                        <trigger>
+                            <uuid>d458d23532334706abf2312da29cb535</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -b])=1</expression>
+                            <name>MD3200 array battery failure</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>5043e6cef5024600985f4c6e7ca620e1</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -b])&gt;1</expression>
+                            <name>MD3200 array battery failure</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>ce9e5fe2e4754cd2bf06e6c68f93c2ad</uuid>
+                    <name>Check drives failure</name>
+                    <key>system.run[/etc/zabbix/scripts/md3200.sh -d]</key>
+                    <delay>1h</delay>
+                    <value_type>TEXT</value_type>
+                    <timeout>30s</timeout>
+                    <triggers>
+                        <trigger>
+                            <uuid>7fe9715570024d5ba3bf622a1dc0115d</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -d])=1</expression>
+                            <name>MD3200 array drive failure</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>6d81ad684c46454dabf37b2c37a9a514</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -d])&gt;1</expression>
+                            <name>MD3200 array drive failure</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>5daea45fd2544b839cedcd9f485891ee</uuid>
+                    <name>Check fan failure</name>
+                    <key>system.run[/etc/zabbix/scripts/md3200.sh -f]</key>
+                    <delay>1h</delay>
+                    <value_type>TEXT</value_type>
+                    <timeout>30s</timeout>
+                    <triggers>
+                        <trigger>
+                            <uuid>0bb4729d178249e79075e14c44d4c5c2</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -f])=1</expression>
+                            <name>MD3200 array fan failure</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>366228544e814cd08f5898be7adb2af9</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -f])=2</expression>
+                            <name>MD3200 array fan failure</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>1748cd35c5d74745ae9b430331cc4bce</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -f])&gt;2</expression>
+                            <name>MD3200 array fan failure</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>a4b270e1ed134da3bf5c1e8077eaa2a7</uuid>
+                    <name>Check PSU failure</name>
+                    <key>system.run[/etc/zabbix/scripts/md3200.sh -p]</key>
+                    <delay>1h</delay>
+                    <value_type>TEXT</value_type>
+                    <timeout>30s</timeout>
+                    <triggers>
+                        <trigger>
+                            <uuid>72e0a2e524cc4cdb8c8e446f8d3c0d2b</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -p])=1</expression>
+                            <name>MD3200 array PSU failure</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>e8c5721640584124a1e74804f205e415</uuid>
+                    <name>Check temperature status</name>
+                    <key>system.run[/etc/zabbix/scripts/md3200.sh -t]</key>
+                    <delay>1h</delay>
+                    <value_type>TEXT</value_type>
+                    <timeout>30s</timeout>
+                    <triggers>
+                        <trigger>
+                            <uuid>18db254462d9426fb34400bbd7177d5e</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -t])=1</expression>
+                            <name>MD3200 array temperature sensor</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>556d5cfa3c0f4638bf5e07b4a52b4821</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -t])=2 or last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -t])=3</expression>
+                            <name>MD3200 array temperature sensor</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>ac953b97dc604ae6aa1949248d4052d3</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -t])=4 or last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -t])=5</expression>
+                            <name>MD3200 array temperature sensor</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>75d10a0df42e4fbfb975bb0fe39d3700</uuid>
+                            <expression>last(/MD3200/system.run[/etc/zabbix/scripts/md3200.sh -t])=6</expression>
+                            <name>MD3200 array temperature sensor</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
